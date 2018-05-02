@@ -55,15 +55,15 @@ public class Tile: MonoBehaviour {
 		}
 	}
 
-	public void SwapSprite(SpriteRenderer render2) { // 1
-		if (render.sprite == render2.sprite) { // 2
+	public void SwapSprite(SpriteRenderer render2) {
+		if (render.sprite == render2.sprite) {
 			return;
 		}
 
-		Sprite tempSprite = render2.sprite; // 3
-		render2.sprite = render.sprite; // 4
-		render.sprite = tempSprite; // 5
-		SFXManager.instance.PlaySFX(Clip.Swap); // 6
+		Sprite tempSprite = render2.sprite;
+		render2.sprite = render.sprite;
+		render.sprite = tempSprite;
+		SFXManager.instance.PlaySFX(Clip.Swap);
 	}
 
 	private GameObject GetAdjacent(Vector2 castDir) {
