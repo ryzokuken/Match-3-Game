@@ -126,6 +126,10 @@ public class Tile: MonoBehaviour {
 		if (matchFound) {
 			render.sprite = null;
 			matchFound = false;
+
+			StopCoroutine(BoardManager.instance.FindNullTiles());
+			StartCoroutine(BoardManager.instance.FindNullTiles());
+
 			SFXManager.instance.PlaySFX(Clip.Clear);
 		}
 	}
