@@ -84,10 +84,27 @@ public class BoardManager : MonoBehaviour {
 			return new WaitForSeconds(shiftDelay); // 4
 			for (int k = 0; k < renders.Count - 1; k++) { // 5
 				renders[k].sprite = renders[k + 1].sprite;
-				renders[k + 1].sprite = null; // 6
+				renders[k + 1].sprite = GetNewSprite(x, ySize - 1);
 			}
 		}
 		IsShifting = false;
+	}
+
+	private Sprite GetNewSprite(int x, int y) {
+		List < Sprite > possibleCharacters = new List < Sprite > ();
+		possibleCharacters.AddRange(characters);
+
+		if (x > 0) {
+			possibleCharacters.Remove(tiles[x - 1, y].GetComponent < SpriteRenderer > ().sprite);
+		}
+		if (x < xSize - 1) {
+			possibleCharacters.Remove(tiles[x + 1, y].GetComponent < SpriteRenderer > ().sprite);
+		}
+		if (y > 0) {
+			possibleCharacters.Remove(tiles[x, y - 1].GetComponent < SpriteRenderer > ().sprite);
+		}
+
+		return possibleCharacters[Random.Range(0, possibleCharacters.Count)];
 	}
 
 }
